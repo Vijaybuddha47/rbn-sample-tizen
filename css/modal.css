@@ -1,0 +1,199 @@
+/** Start of exit popup **/
+.popup_container {
+    overflow: hidden;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, .7);
+    z-index: 1000;
+}
+
+.exit_modal {
+    background: #162d5b;
+    width: 800px;
+    height: 430px;
+    top: 28%;
+    left: 28.3%;
+    position: absolute;
+    z-index: 1050;
+    margin: 0px auto;
+    visibility: hidden;
+    display: none;
+    border: 3px solid #536385;;
+    border-radius: 4px 4px;
+    font-family: 'copperplate-bold';
+}
+
+.exit_modal_show {
+    top: 21.5%;
+    left: 50%;
+    visibility: visible;
+    display: block;
+    transform: translate(-50%, 21.5%);
+}
+
+.popup_btn {
+    text-align: center;
+    position: relative;
+    top: 0px;
+}
+
+.popup_headline {
+    font-size: 40px;
+    padding-top: 128px;
+    padding-bottom: 85px;
+    text-align: center;
+    font-weight: normal;
+    color: #ffffff !important;
+}
+
+.no_button {
+    width: 240px;
+    height: 62px;
+    text-align: center;
+    font-size: 40px;
+    margin-right: 42px;
+    border: none;
+    padding: 4px 4px;
+    color: #000;
+    font-family: 'copperplate-bold';
+}
+
+.yes_button {
+    width: 240px;
+    height: 62px;
+    text-align: center;
+    font-size: 40px;
+    border: none;
+    padding: 4px 4px;
+    color: #000;
+    font-family: 'copperplate-bold';
+}
+
+.popup_img {
+    width: 900px;
+    height: 460px;
+    position: absolute;
+    z-index: -1;
+}
+
+.popup_btn button:focus {
+    background-color: #e50913 !important;
+    color: #000 !important;
+}
+
+
+.dialog_img {
+    position: relative;
+    top: 12px;
+}
+.dialog_img img{
+    width: 29px;;
+}
+
+.popup_header {
+    font-size: 46px;
+    padding-left: 71px;
+    padding-right: 40px;
+    margin-top: 83px;
+    clear: both;
+    display: block;
+    float: left;
+    width: 100%;
+    line-height: 44px;
+    font-family: 'copperplate-bold';
+}
+
+.dialog_txt {
+    padding-left: 56px;
+    color: #fff;
+    display: block;
+    vertical-align: middle;
+    font-size: 36px;
+    width: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: left;
+    position: relative;
+    bottom: 37px;
+}
+
+.popup_description {
+    color: #ffffff !important;
+    font-size: 32px;
+    margin-bottom: 30px;
+    line-height: 47px;
+    padding-left: 70px;
+    padding-right: 60px;
+    height: 120px;
+    display: table-cell;
+    vertical-align: top;
+    padding-top: 25px;
+    font-family: 'copperplate-bold';
+}
+
+.connection_btn {
+    width: 240px;
+    height: 62px;
+    text-align: center;
+    font-size: 40px;
+    margin-right: 42px;
+    border: none;
+    padding: 4px 4px;
+    margin-top: 18px;
+    background-color: #cbcdcc;
+    color: #000;
+    margin-left: 0;
+    font-family: 'copperplate-bold';
+}
+
+.connection_retry_btn {
+    width: 240px;
+    height: 62px;
+    text-align: center;
+    font-size: 40px;
+    margin-right: 42px;
+    padding: 4px 4px;
+    border: none;
+    margin-left: 15px;
+    margin-top: 18px;
+    background-color: #cbcdcc;
+    color: #000;
+    border-radius: 0px;
+    font-family: 'copperplate-bold';
+}
+
+.popup_connection {
+    width: 900px;
+    height: 450px;
+    top: 0px;
+    left: 50%;
+    position: absolute;
+    z-index: 999999;
+    margin: 0px auto;
+    visibility: hidden;
+    display: none;
+    transform: translate(-50%, -69%);
+    border: 3px solid #536385;
+    background: #162d5b;
+}
+
+.mod_bg_color {
+    background-size: contain !important;
+    background-repeat: no-repeat !Important;
+}
+
+.popup_new_box {
+    top: 55%;
+    visibility: visible;
+    display: block;
+}
+
+.zoom-in {
+    transform: scale(.95);
+}
+
+/** End css for connection error popup **/

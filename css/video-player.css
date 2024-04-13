@@ -1,0 +1,489 @@
+/* Start Video container */
+.video-container {
+    overflow: hidden;
+    position: relative;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background: #000;
+    z-index: 999999;
+}
+
+.video-title {
+    position: absolute;
+    color: #FFFFFF;
+    font-size: 40px;
+    font-weight: bold;
+    top: 40%;
+    left: 50%;
+    width: 95%;
+    right: 50%;
+    text-align: center;
+    -webkit-transform: translate(-50%, -35.9%);
+    transform: translate(-50%, -35.9%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.video-loader {
+    position: absolute;
+    top: 47%;
+    left: 46.4%;
+    width: 110px;
+    height: 110px;
+    z-index: 9999;
+}
+
+.video_box {
+    width: 1920px;
+    height: 1080px;
+}
+
+.pause-icon {
+    width: 110px;
+    height: 110px;
+    top: 45%;
+    left: 46.4%;
+    text-align: center;
+    z-index: 9999;
+    position: absolute;
+}
+
+#av-player,
+#video_container {
+    display: none;
+}
+
+/** Start of progress bar **/
+.progress-container {
+    position: absolute;
+    bottom: 75px;
+    display: table;
+    width: 100%;
+    padding: 0px 2px;
+    z-index: 999999;
+}
+
+.progress-time {
+    color: #fff;
+    font-size: 28px;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1%;
+    line-height: 1;
+    padding: 6px 18px;
+    display: table-cell;
+}
+
+.progress {
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-top: 22px;
+    margin-bottom: 20px;
+    display: table-cell;
+    border-radius: 10px 10px;
+    height: 20px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.progress-bar {
+    float: left;
+    width: 0;
+    height: 100%;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    background-color: #ff431d;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+    -webkit-transition: width .6s ease;
+    transition: width .6s ease;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/** End of progress bar **/
+
+/** Start Video Loader **/
+.video-buffered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.circle_loader {
+    width: 145px;
+    height: 145px;
+    background: url("../images/loader.png") no-repeat;
+    background-size: cover;
+    -moz-animation: spin 5s infinite linear;
+    -webkit-animation: spin 5s infinite linear;
+}
+
+.buffered_dimension {
+    position: absolute;
+    top: 43.3%;
+    left: 46.2%;
+    width: 145px;
+    height: 145px;
+    text-align: center;
+    -webkit-transform: translate(-46.2%, -43.3%);
+    -moz-transform: translate(-46.2%, -43.3%);
+    -ms-transform: translate(-46.2%, -43.3%);
+    -o-transform: translate(-46.2%, -43.3%);
+    transform: translate(-46.2%, -43.3%);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/** End Video Loader **/
+/** Start Next previous video **/
+.video_next_previous_container {
+    position: absolute;
+    bottom: 5px;
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+
+ul.video_next_previous_icon_list {
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+
+ul.video_next_previous_icon_list li {
+    margin: 0px 0px;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 30px;
+}
+
+.video_next_previous_play_pause_center {
+    position: relative;
+    top: 13px;
+}
+
+ul.video_next_previous_icon_list li:focus {
+    background: #EAC0C0;
+}
+
+ul.video_next_previous_icon_list li.next_prev_video {
+    height: 41px;
+    width: 75px;
+    padding-top: 26px;
+}
+
+/** End Next previous video **/
+/** Start of channel DVR setting **/
+.channel_dvr_box {
+    display: none;
+    position: absolute;
+    top: 0px;
+    background: rgba(0, 0, 0, 0.5);
+    height: 1080px;
+    z-index: 9999;
+}
+
+.channel_dvr_title {
+    font-size: 68px;
+    font-family: 'Arial-bold';
+    text-align: center;
+    color: #fff;
+    width: 1920px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    position: fixed;
+    top: 10px;
+}
+
+.epg_right_side_time {
+    font-size: 30px;
+    font-family: 'Arial-bold';
+    text-align: right;
+    color: #fff;
+    width: 1920px;
+    right: 32px;
+    position: fixed;
+    top: 32px;
+}
+
+ul.dvr_list {
+    margin: 0px 0px;
+    padding: 0px 0px;
+    width: 1000000000000px;
+    clear: both;
+}
+
+ul.dvr_list_epg {
+    width: 100% !important;
+}
+
+ul.dvr_list li {
+    margin: 20px 20px;
+    float: left;
+}
+
+.dvr_bluebox {
+    font-size: 30px;
+    font-family: 'Roboto-medium';
+    font-weight: 400;
+    text-align: left;
+    color: #fff;
+    padding: 15px 15px;
+    border-radius: 7px 7px;
+    width: 340px;
+}
+
+.time_list,
+.time_text {
+    width: 325px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    line-height: 31px;
+}
+
+ul.dvr_list li:focus,
+.dvr_activate {
+    background-image: linear-gradient(#3a96c3, #4fd8d6);
+}
+
+.no_epg {
+    width: 1920px;
+    text-align: center;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute;
+    background-color: #271c1c;
+    opacity: 0.9;
+    padding-top: 476px;
+    padding-bottom: 554px;
+}
+
+.no_epg span {
+    font-family: "Roboto-medium";
+    font-size: 50px;
+    color: #fff;
+}
+
+/** Start All/single EPG icons **/
+.programme_info {
+    position: absolute;
+    bottom: -56px;
+    display: none;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    float: left;
+}
+
+.programme_details {
+    text-align: center;
+    position: relative;
+    top: 12px;
+}
+
+.programme_title {
+    color: #fff;
+    font-family: "Roboto-medium";
+    font-size: 30px;
+    line-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    width: 1720px;
+}
+
+.programme_desc {
+    color: #fff;
+    font-family: "Roboto-medium";
+    font-size: 20px;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    width: 1720px;
+}
+
+.epg-icons {
+    float: right;
+    position: relative;
+    bottom: 80px;
+    right: 30px;
+}
+
+.epg_button {
+    color: #fff;
+    font-family: "Roboto-medium";
+    font-size: 20px;
+    background: #398DB7;
+    margin-top: 33px;
+    border-radius: 6px 6px;
+    border-color: transparent;
+    padding: 5px 20px 5px 20px;
+}
+
+.epg_button:focus {
+    background: #EAC0C0;
+}
+
+/** End All/single EPG icons **/
+/* End Video container */
+
+.epgUlContainer {
+    margin-top: 100px;
+    height: 892px;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+}
+
+/** EPS created **/
+.language {
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+    right: 0px;
+    display: none;
+}
+
+.language ul {
+    position: absolute;
+    height: auto;
+    width: 220px;
+    background-color: #27282c;
+    margin: 0;
+    color: #fff;
+    padding: 0px;
+    right: 5px;
+    top: 20px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.video_player_inbox {
+    position: relative;
+}
+
+.language ul li {
+    padding: 7px 10px;
+    z-index: 2;
+    list-style-type: none;
+    margin: 0px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 5px;
+    position: relative;
+}
+
+span.down-arrow {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    z-index: 99;
+    cursor: pointer;
+}
+
+.language ul li:not(.init) {
+    float: left;
+    width: 180px;
+    display: none;
+    background: rgba(228, 33, 33, 0);
+    margin: 0px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.language ul li:not(.init):hover,
+.language ul li.selected:not(.init) {
+    background: #40424e;
+}
+
+.language li.init img {
+    transform: rotate(60deg);
+    float: right;
+    width: 12px;
+    height: auto;
+    margin-top: 8px;
+    visibility: hidden;
+}
+
+.language li.init:after {
+    transform: rotate(60deg);
+    width: 12px;
+    content: '';
+    background-image: url("../images/arrow-up.png");
+    height: 23px;
+    background-repeat: no-repeat;
+    background-size: 12px;
+    right: 16px;
+    position: absolute;
+    top: 6px;
+}
+
+.language li.selected::after {
+    width: 12px;
+    content: '';
+    background-image: url("../images/check-mark.png");
+    height: 23px;
+    background-repeat: no-repeat;
+    background-size: 12px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+}
+
+.language ul li:not(.init) img {
+    float: right;
+    margin-top: 5px;
+    visibility: hidden;
+}
+
+.language ul li.selected:not(.init) img {
+    visibility: visible;
+}
+
+.language li:last-child {
+    margin-bottom: 10px !important;
+}
