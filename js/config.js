@@ -1,5 +1,5 @@
-window.APP_NAME = "Radio Bianconera TV";
-
+window.APP_NAME = "Radio Bianconera";
+window.APP_URL = "http://support.fluidstream.net/tmw/rbn.json";
 // Variables for modal color setting
 window.MODAL_TEXT_COLOR = "#000000";
 

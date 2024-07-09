@@ -36,21 +36,50 @@ window.addEventListener('load', function () {
 
 	SN.makeFocusable();
 
+	console.log("hello navigation");
+
 	$(window).keydown(function (evt) {
 		var modalName = $(".modal_container").attr("data-modal-name");
 		switch (evt.keyCode) {
 			case 13: // Ok
+				if ($(".video_container").hasClass("active")) {
+					if (webapis.avplay.getState() !== "PAUSED") webapis.avplay.pause();
+					else webapis.avplay.play();
+
+				}
 				break;
 
-			case 10009: // Pause 102
+			case 10009: // Back 102
 				if ($(".video_container").hasClass("active")) {
 					hide_show_modal(true, "EXIT");
 
 				} else if ($(".modal_container").hasClass("active")) {
 					// When exit modal selected
 					hide_show_modal(false, modalName);
-					SN.focus("videoSection");
+					if(modalName === "RETRY_CANCEL") window.close();
+					else if (modalName === "EXIT") SN.focus("videoSection");
+				}
+				break;
 
+			case 10252: // MediaPlayPause
+			    console.log("play pause on MediaPlayPause");
+				if ($(".video_container").hasClass("active")) {
+					if (webapis.avplay.getState() !== "PAUSED") webapis.avplay.pause();
+					else webapis.avplay.play();
+				}
+				break;
+
+            case 415: // MediaPlay
+			    console.log("play pause on MediaPlay");
+				if ($(".video_container").hasClass("active")) {
+					webapis.avplay.play();
+				}
+				break;
+
+			case 19: // MediaPause
+			    console.log("play pause on MediaPause");
+				if ($(".video_container").hasClass("active")) {
+					webapis.avplay.pause();
 				}
 				break;
 
@@ -94,7 +123,7 @@ function manage_spatial_navigation(containerClass, favoriteStatus, vodId) {
 
 			$('#yesButton').on('sn:enter-down', function (e) {
 				console.log('exit app');
-				window.close();
+				tizen.application.getCurrentApplication().exit();
 			});
 			break;
 
@@ -106,11 +135,12 @@ function manage_spatial_navigation(containerClass, favoriteStatus, vodId) {
 				console.log("retryModal sn:enter-down");
 				hide_show_modal(false, "RETRY_CANCEL");
 				if ($('#retryButton').is(":focus")) load_video();
-				else if ($("#cancelButton").is(":focus")) window.close();
+				else if ($("#cancelButton").is(":focus")) tizen.application.getCurrentApplication().exit();
 			});
 			break;
 
-		case "RETRY_EXIT": set_focus('retryModal', 'retryButton');
+		case "RETRY_EXIT":
+		    set_focus('retryModal', 'retryButton');
 			SN.focus("retryModal");
 
 			$('#retryModal').off('sn:enter-down');
@@ -118,12 +148,14 @@ function manage_spatial_navigation(containerClass, favoriteStatus, vodId) {
 				console.log("retryModal sn:enter-down");
 				if ($('#noButton').is(":focus")) {
 					console.log('hide popup');
-					hide_show_modal(false, 'EXIT');
+					hide_show_modal(false, 'RETRY_EXIT');
+					VOD_URL = DATA_OBJ.stream_url;
+                    load_video();
 					SN.focus("videoSection");
 
 				} else if ($("#yesButton").is(":focus")) {
 					console.log('exit app');
-					window.close();
+					tizen.application.getCurrentApplication().exit();
 				}
 
 			});

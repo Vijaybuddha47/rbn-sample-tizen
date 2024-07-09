@@ -64,15 +64,10 @@ function hide_show_modal(action, name, message) {
 		$(".modal_container").removeClass("active");
 		$(".modal_container").attr("data-modal-name", "");
 
-		if (name == 'EXIT') {
-			$(".video_container").addClass("active");
-			$(".main-container").removeClass("pointer");
-			$(".exit_modal").removeClass("exit_modal_show");
-			SN.focus('menuList');
-			console.log('hide exit popup');
-
-		} else if (name == "RETRY_CANCEL") {
-			$(".retry_modal").removeClass("popup_new_box");
-		}
+		$(".video_container").addClass("active");
+		$(".main-container").removeClass("pointer");
+		$(".exit_modal").removeClass("exit_modal_show");
+		load_video();
+		SN.focus('videoSection');
 	}
 }

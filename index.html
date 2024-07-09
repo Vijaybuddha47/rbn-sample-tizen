@@ -8,7 +8,7 @@
 	<meta http-equiv='expires' content='0'>
 	<meta http-equiv='pragma' content='no-cache'>
 	<meta name="description" content="" />
-	<title>RBN</title>
+	<title>Radio Bianconera</title>
 
 	<link rel="stylesheet" href="css/video-player.css">
 	<link  rel="stylesheet" href="css/style.css">
@@ -23,85 +23,62 @@
 <body style="background:rgba(7,7,7,1)">
 	<div class="splash-screen" style="display: none;"></div>
 	<div class="main-container">
-
 	   <!-- Start of video container -->
-	   <div class="video-player-container">
-		<div id="videoPlayer">
-			<div class="video-container video_container focusable" id="video_container" tabindex='8'
-				data-sn-right="null" data-sn-left="null" data-sn-up="null">
-				<object id="av-player" type="application/avplayer" class="video_box"
-					style="width: 1920px;height:1080px;"></object>
-				<div class="language">
-					<ul>
-						<li class="init">Audio
-							<span class="down-arrow">
-								<!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-													<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-												</svg>-->
-							</span>
-						</li>
-						<li data-value="value 1">Auto <span class="down-arrow"></span></li>
-						<li data-value="value 2">English <span class="down-arrow"></span></li>
-						<li data-value="value 3">Spanish <span class="down-arrow"></span></li>
-					</ul>
-				</div>
-				<!-- Start of video pause -->
-				<div class="pause-icon" style="display: none;">
-					<img src="images/btn_play_off.png" alt="pause icon">
-				</div>
-				<!-- End of video pause -->
-				<!-- Start of video inner -->
-				<div class="video-inner">
-					<h4 class="video-title"></h4>
-					<!-- Start of video loader -->
-					<div class="video-buffered">
-						<div class="circle_loader buffered_dimension"></div>
+	    <div class="video-player-container">
+			<div id="videoPlayer">
+				<div class="video-container video_container focusable" id="video_container" tabindex='8'
+					data-sn-right="null" data-sn-left="null" data-sn-up="null">
+					<object id="av-player" type="application/avplayer" class="video_box"
+						style="width: 1920px;height:1080px;"></object>
+					<div class="language">
+						<ul>
+							<li class="init">Audio
+								<span class="down-arrow">
+									<!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+														<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+													</svg>-->
+								</span>
+							</li>
+							<li data-value="value 1">Auto <span class="down-arrow"></span></li>
+							<li data-value="value 2">English <span class="down-arrow"></span></li>
+							<li data-value="value 3">Spanish <span class="down-arrow"></span></li>
+						</ul>
 					</div>
-					<!-- End of video loader -->
-				</div>
-				<!-- End of video inner -->
-				<!-- Start of progress bar -->
-				<div class="progress-container" style="display: none;">
-					<span class="progress-time" id="currentTime"></span>
-					<div class="progress">
-						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-							aria-valuemax="100" style="width:0%">
-							<span class="sr-only"></span>
+					<!-- Start of video pause -->
+					<div class="pause-icon" style="display: none;">
+						<img src="images/btn_play_off.png" alt="pause icon">
+					</div>
+					<!-- End of video pause -->
+					<!-- Start of video inner -->
+					<div class="video-inner">
+						<h4 class="video-title"></h4>
+						<!-- Start of video loader -->
+						<div class="video-buffered">
+							<div class="circle_loader buffered_dimension"></div>
 						</div>
+						<!-- End of video loader -->
 					</div>
-					<span class="progress-time" id="totalTime"></span>
-				</div>
-				<!-- End progress bar -->
-
-				<!-- Start of ad's time -->
-				<div class="ad_time_container">
-					<div class="show_ad_time">
-						<span class="ad_title"></span>
-						<span id="ad_time"></span>
+					<!-- End of video inner -->
+					<!-- Start of progress bar -->
+					<div class="progress-container" style="display: none;">
+						<span class="progress-time" id="currentTime"></span>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+								aria-valuemax="100" style="width:0%">
+								<span class="sr-only"></span>
+							</div>
+						</div>
+						<span class="progress-time" id="totalTime"></span>
 					</div>
-				</div>
-				<!-- End of ad's time -->
-
-				<!-- Start Previous / Next Video -->
-				<div class="video_next_previous_container" tabindex="9" id="videoNextPrevious">
-					<ul class="video_next_previous_icon_list">
-						<li class="next_prev_video focusable" id="playPreviousVideo" data-sn-right="#playPauseVideo"
-							data-sn-left="null" data-sn-down="null"><img src="images/previous_video.png"></li>
-						<li class="video_next_previous_play_pause_center focusable" id="playPauseVideo"
-							data-sn-right="#playNextVideo" data-sn-left="#playPreviousVideo" data-sn-down="null">
-							<img src="images/play.png" id="videoNextPreviousPlayPauseIcon">
-						</li>
-						<li class="next_prev_video focusable" id="playNextVideo" data-sn-right="null"
-							data-sn-left="#playPauseVideo" data-sn-down="null"><img src="images/next_video.png">
-						</li>
-					</ul>
-				</div>
-				<!-- End Previous / Next Video -->
+					<!-- End progress bar -->
 			</div>
-		</div>
-	</div>
+	   </div>
 	<!-- End of video container -->
 	</div>
+
+	<div class="loader" id="loader">
+        <div class="circle_loader"></div>
+    </div>
 
 	<span id="modal_container" class="modal_container">
 		<!-- Html file will come here -->

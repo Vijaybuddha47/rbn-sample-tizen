@@ -1,6 +1,7 @@
 window.onload = function () {
 	$('title').text(APP_NAME);
 	$('meta[name=description]').attr('content', APP_NAME);
+    getAppData();
 
 	// TODO:: Do your initialization job
 	$("body").removeAttr("style");
@@ -10,21 +11,65 @@ window.onload = function () {
 	$("span#modal_container").load("modal.html");
 	$(".splash-screen").css({ 'position': 'absolute', 'z-index': '100' });
 
-    getAppData();
+    webapis.network.addNetworkStateChangeListener(function (value) {
+        if (value == webapis.network.NetworkState.GATEWAY_DISCONNECTED) {
+            // Something you want to do when network is disconnected
+            console.log("disconnected");
+            hide_show_modal(true, "RETRY_EXIT", NET_CONNECTION_ERR);
+        } else if (value == webapis.network.NetworkState.GATEWAY_CONNECTED) {
+            // Something you want to do when network is connected again
+            console.log("connected");
+            hide_show_modal(false, "RETRY_EXIT");
+            VOD_URL = DATA_OBJ.stream_url;
+            load_video();
+        }
+    });
 
-	setTimeout(function () { load_main_screen(); }, 5000);
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            // if (webapis.avplay.getState() !== "PAUSED") webapis.avplay.pause();
+            if (webapis.avplay.getState() != "NONE") {
+				webapis.tvinfo.registerInAppCaptionControl(false);
+				webapis.avplay.suspend(); //Mandatory. If you use avplay, you should call this method.
+			}
+        } else {
+            webapis.tvinfo.registerInAppCaptionControl(true);
+			webapis.tvinfo.showCaption(false);
+			webapis.avplay.restore();
+            // if (webapis.avplay.getState() == "PAUSED") webapis.avplay.play();
+        }
+    });
+
+
+    function checkNetworkStatus() {
+        tizen.systeminfo.getPropertyValue('NETWORK', function(network) {
+            if (network.networkType === 'NONE') {
+                console.log("show network popup systeminfo");
+                hide_show_modal(true, "RETRY_EXIT", NET_CONNECTION_ERR);
+            } else {
+                console.log("hide network popup systeminfo");
+            }
+        }, function(error) {
+            console.error('An error occurred: ' + error.message);
+        });
+    }
+
+    // Initial check and setup listener
+    checkNetworkStatus();
 };
 
 function load_main_screen() {
+    $(".splash-screen").hide();
 	if (navigator.onLine) {
-
-        if(DATA_OBJ.ad_unit.trim() != '') parse_vast_tag();
+        $("#loader").show();
+        if(DATA_OBJ.ad_unit.trim() != ''){
+            dfpUrl =  DATA_OBJ["ad_unit"] + Math.floor(Math.random() * 1000000) + 1;
+            parse_vast_tag(dfpUrl);
+        }
 		else {
             VOD_URL = DATA_OBJ.stream_url;
             load_video();
         }
-
-		// load_video();
 
 	} else {
 		hide_show_modal(true, "RETRY_EXIT", NET_CONNECTION_ERR);
@@ -103,12 +148,15 @@ function getAppData(){
         async: true,
         cache: false,
         success: function (response) {
+            console.log(response);
             let str = response.ad_unit;
             DATA_OBJ = response;
             if(str.trim() != ''){
                 DATA_OBJ.ad_unit = "https://pubads.g.doubleclick.net/gampad/ads?iu="+str+"/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
-                // if(DATA_OBJ.ad_unit != '') DATA_OBJ.ad_unit = "https://pubads.g.doubleclick.net/gampad/ads?iu="+DATA_OBJ.ad_unit+"/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
             }
+
+            console.log(DATA_OBJ);
+            load_main_screen();
         },
         error: function (xhr, error) {
             console.log("error", error);
@@ -121,8 +169,8 @@ function getAppData(){
 }
 
 
-function parse_vast_tag() {
-    dfpUrl =  DATA_OBJ["ad_unit"] + Math.floor(Math.random() * 1000000) + 1;
+function parse_vast_tag(dfpUrl) {
+    console.log(dfpUrl);
 
     try {
         var contextType = "",
@@ -226,15 +274,17 @@ function parse_vast_tag() {
                 });
 
                 if (VAST_TAG_ARR['wrapper'].length > 0) {
+                    console.log("111111");
                     parse_vast_tag(VAST_TAG_ARR['wrapper'][0]);
                 } else if (VAST_TAG_ARR['inline'].length > 0 && VAST_TAG_ARR['inline'].length > VAST_ADS_COUNTER) {
+                    console.log("222222");
                     AD_URL = VAST_TAG_ARR['inline'][VAST_ADS_COUNTER];
-                    // if(DATA_OBJ[0]["adUrl"]) VOD_URL = DATA_OBJ[0]["adUrl"];
-                    // else VOD_URL = DATA_OBJ[0]["videoUrl"];
-
                     load_video();
                 } else {
+                    console.log("333333");
+                    AD_PLAY= false;
                     AD_URL = "";
+                    VOD_URL =  DATA_OBJ.stream_url;
                     load_video();
                 }
 
@@ -245,7 +295,6 @@ function parse_vast_tag() {
                     parse_vast_tag(VAST_TAG_ARR['wrapper'][0]);
                 } else if (VAST_TAG_ARR['inline'].length > 0 && VAST_TAG_ARR['inline'].length > VAST_ADS_COUNTER) {
                     VAST_ADS_COUNTER++;
-                    // closeVideo();
                     AD_URL = VAST_TAG_ARR['inline'][VAST_ADS_COUNTER];
                     load_video();
                 } else {

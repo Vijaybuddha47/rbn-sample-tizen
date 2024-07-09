@@ -112,7 +112,7 @@ var listener = {
 			if(AD_PLAY) {
 				AD_PLAY = false;
 				AD_URL = '';
-				VOD_URL = DATA_OBJ[0]["videoUrl"];
+				VOD_URL = DATA_OBJ.stream_url;
 				load_video();
 			}else closeVideo();
 
@@ -216,6 +216,7 @@ var playVideo = function () {
 		console.log("play video");
 		if ($('#video_container').css('display', 'block')) {
 			$(".pause-icon").hide();
+			$("#loader").hide();
 			webapis.avplay.play();
 			// show_hide_progress_bar_after_specific_time();
 		} else {
